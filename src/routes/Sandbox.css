@@ -1,0 +1,159 @@
+/* Sandbox route — chassis owns layout primitives.
+   Route-specific: 3-col grid, 3D preview stage, roster. */
+
+.sbx-body {
+  padding: 14px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sbx-grid {
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr) 320px;
+  gap: 12px;
+}
+@media (max-width: 1200px) { .sbx-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 900px)  { .sbx-grid { grid-template-columns: 1fr; } }
+
+.sbx-enrich-wrap { padding-top: 4px; }
+
+.sbx-preview-stage {
+  position: relative;
+  background: var(--bg);
+  min-height: 360px;
+  display: grid;
+  place-items: stretch;
+}
+
+/* Design-space matrix */
+.sbx-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 6px;
+}
+.sbx-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.sbx-matrix-table th, .sbx-matrix-table td {
+  padding: 0;
+  border: 1px solid var(--rule);
+}
+.sbx-matrix-col, .sbx-matrix-row {
+  background: var(--bg);
+  color: var(--ink-dim);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  padding: 6px 4px;
+  font-weight: 500;
+}
+.sbx-matrix-cell {
+  height: 40px;
+  position: relative;
+}
+.sbx-matrix-cell.is-on {
+  outline: 2px solid var(--signal);
+  outline-offset: -2px;
+  box-shadow: 0 0 12px var(--signal-glow);
+  z-index: 2;
+}
+.sbx-matrix-btn {
+  width: 100%;
+  height: 100%;
+  border: none;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: filter var(--t-fast) var(--easing);
+}
+.sbx-matrix-btn:hover { filter: brightness(1.4); }
+.sbx-matrix-real {
+  color: var(--ink);
+  font-size: 12px;
+  text-shadow: 0 0 4px rgba(0,0,0,0.7);
+}
+.sbx-matrix-legend {
+  display: flex;
+  gap: 14px;
+  font-size: 9px;
+  color: var(--ink-dim);
+  letter-spacing: 0.18em;
+  flex-wrap: wrap;
+}
+.sbx-matrix-legend span { display: inline-flex; align-items: center; gap: 4px; }
+.sbx-matrix-legend i {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border: 1px solid var(--rule);
+}
+.sbx-matrix-legend b { color: var(--ink); }
+
+.sbx-verdict-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Roster */
+.sbx-roster-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--rule);
+}
+.sbx-roster-clear {
+  font-size: 10px; letter-spacing: 0.2em;
+  color: var(--warn); background: transparent;
+  border: 1px solid var(--warn);
+  padding: 4px 10px;
+  cursor: pointer;
+}
+.sbx-roster-clear:hover { box-shadow: 0 0 8px var(--warn); }
+
+.sbx-roster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
+  margin-top: 4px;
+}
+.sbx-roster-card {
+  position: relative;
+  padding: 10px 12px;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-left: 2px solid var(--violet);
+}
+.sbx-roster-del {
+  position: absolute;
+  top: 4px; right: 4px;
+  width: 18px; height: 18px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink-faint);
+  font-size: 10px;
+  cursor: pointer;
+}
+.sbx-roster-del:hover { color: var(--crit); border-color: var(--crit); }
+.sbx-roster-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 4px;
+  padding-right: 22px;
+}
+.sbx-roster-meta {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--ink-dim);
+  margin-bottom: 6px;
+}
+.sbx-roster-fun {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}

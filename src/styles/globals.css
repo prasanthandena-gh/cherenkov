@@ -1,0 +1,151 @@
+/* =====================================================
+   FISSION COMMAND — globals
+   Viewport-fit body. No vertical page scroll.
+   ===================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle scanline backdrop */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 3px,
+      rgba(255, 255, 255, 0.012) 3px,
+      rgba(255, 255, 255, 0.012) 4px
+    );
+  pointer-events: none;
+}
+
+/* === LINKS === */
+a {
+  color: var(--signal);
+  text-decoration: none;
+  transition: color var(--t-fast) var(--easing);
+}
+a:hover { color: var(--signal-bright); }
+
+/* === BUTTONS — reset === */
+button {
+  font-family: var(--font-mono);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: inherit;
+  padding: 0;
+}
+button:focus-visible {
+  outline: 1px solid var(--signal);
+  outline-offset: 2px;
+}
+
+/* === SELECTION === */
+::selection {
+  background: var(--signal);
+  color: var(--bg);
+}
+
+/* === SCROLLBAR (only inside panels) === */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--ink-faint); }
+::-webkit-scrollbar-thumb:hover { background: var(--signal); }
+
+/* === UTILITIES === */
+.mono {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.signal { color: var(--signal); }
+
+/* HUD corner brackets */
+.bracket-frame {
+  position: relative;
+}
+.bracket-frame::before,
+.bracket-frame::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--signal);
+  pointer-events: none;
+}
+.bracket-frame::before {
+  top: 0; left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+.bracket-frame::after {
+  bottom: 0; right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+/* === APP SHELL GRID === */
+.app-shell {
+  display: grid;
+  grid-template-rows: var(--topbar-h) 1fr var(--ticker-h);
+  grid-template-columns: var(--leftrail-w) 1fr var(--rightrail-w);
+  grid-template-areas:
+    "topbar topbar topbar"
+    "leftrail center rightrail"
+    "ticker ticker ticker";
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+}
+.app-topbar     { grid-area: topbar; }
+.app-leftrail   { grid-area: leftrail; min-height: 0; min-width: 0; overflow: hidden; }
+.app-center     { grid-area: center;   min-height: 0; min-width: 0; overflow: hidden; }
+.app-rightrail  { grid-area: rightrail; min-height: 0; min-width: 0; overflow: hidden; }
+.app-ticker     { grid-area: ticker; }
+
+@media (max-width: 1100px) {
+  .app-shell {
+    grid-template-columns: 220px 1fr 260px;
+    --leftrail-w: 220px;
+    --rightrail-w: 260px;
+  }
+}
+@media (max-width: 900px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--topbar-h) auto 1fr auto var(--ticker-h);
+    grid-template-areas:
+      "topbar"
+      "leftrail"
+      "center"
+      "rightrail"
+      "ticker";
+  }
+  .app-leftrail, .app-rightrail { max-height: 240px; }
+}

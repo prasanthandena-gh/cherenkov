@@ -1,0 +1,51 @@
+/* Fission route — chassis owns header/panel/chip/sparkline/cta.
+   Route-specific: canvas frame, scenario chip colors, side rail. */
+
+.fsn-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 22px 84px; /* room for fixed CTABar at bottom */
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.fsn-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 12px;
+}
+@media (max-width: 1100px) { .fsn-grid { grid-template-columns: 1fr; } }
+
+.fsn-canvas-wrap {
+  position: relative;
+  background: radial-gradient(ellipse at center, #161616, #0a0a0a 70%);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  min-height: 460px;
+}
+.fsn-canvas {
+  display: block;
+  background: transparent;
+}
+.fsn-canvas-overlay {
+  position: absolute;
+  bottom: 10px; left: 12px;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--ink-dim);
+  background: rgba(10, 10, 10, 0.75);
+  border: 1px solid var(--rule);
+  padding: 4px 8px;
+  pointer-events: none;
+}
+
+.fsn-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}

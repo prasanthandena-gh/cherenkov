@@ -1,0 +1,198 @@
+/* =====================================================
+   EXTRA REACTORS — real reactor sites beyond the curated
+   flagship set in REACTORS. Drawn from IAEA PRIS + Wikipedia.
+
+   When the user clicks "+1" on a country in TOP NATIONS,
+   we reveal the next un-shown site from this list.
+
+   Each entry uses the same shape as a regular Reactor.
+   Status defaults to 'active' unless the real plant is shut
+   down or under construction (then 'paused' or 'ghost').
+   ===================================================== */
+
+import { type Reactor } from './reactors'
+
+export const EXTRA_REACTORS: Reactor[] = [
+  /* =================== USA =================== */
+  { id: 'us-brownsferry', name: 'Browns Ferry',   country: 'USA', lat: 34.704, lng: -87.119, capGW: 3.4, status: 'active', year: 1974, type: 'BWR' },
+  { id: 'us-oconee',      name: 'Oconee',         country: 'USA', lat: 34.794, lng: -82.899, capGW: 2.5, status: 'active', year: 1973, type: 'PWR' },
+  { id: 'us-sequoyah',    name: 'Sequoyah',       country: 'USA', lat: 35.227, lng: -85.094, capGW: 2.4, status: 'active', year: 1981, type: 'PWR' },
+  { id: 'us-wattsbar',    name: 'Watts Bar',      country: 'USA', lat: 35.602, lng: -84.789, capGW: 2.3, status: 'active', year: 1996, type: 'PWR' },
+  { id: 'us-hatch',       name: 'Hatch',          country: 'USA', lat: 31.934, lng: -82.345, capGW: 1.8, status: 'active', year: 1975, type: 'BWR' },
+  { id: 'us-farley',      name: 'Farley',         country: 'USA', lat: 31.224, lng: -85.111, capGW: 1.8, status: 'active', year: 1977, type: 'PWR' },
+  { id: 'us-catawba',     name: 'Catawba',        country: 'USA', lat: 35.052, lng: -81.073, capGW: 2.3, status: 'active', year: 1985, type: 'PWR' },
+  { id: 'us-mcguire',     name: 'McGuire',        country: 'USA', lat: 35.432, lng: -80.949, capGW: 2.3, status: 'active', year: 1981, type: 'PWR' },
+  { id: 'us-surry',       name: 'Surry',          country: 'USA', lat: 37.166, lng: -76.698, capGW: 1.7, status: 'active', year: 1972, type: 'PWR' },
+  { id: 'us-northanna',   name: 'North Anna',     country: 'USA', lat: 38.060, lng: -77.789, capGW: 1.9, status: 'active', year: 1978, type: 'PWR' },
+  { id: 'us-calvertcliffs', name: 'Calvert Cliffs', country: 'USA', lat: 38.435, lng: -76.442, capGW: 1.7, status: 'active', year: 1975, type: 'PWR' },
+  { id: 'us-peachbottom', name: 'Peach Bottom',   country: 'USA', lat: 39.758, lng: -76.269, capGW: 2.6, status: 'active', year: 1974, type: 'BWR' },
+  { id: 'us-limerick',    name: 'Limerick',       country: 'USA', lat: 40.226, lng: -75.587, capGW: 2.3, status: 'active', year: 1986, type: 'BWR' },
+  { id: 'us-susquehanna', name: 'Susquehanna',    country: 'USA', lat: 41.090, lng: -76.146, capGW: 2.6, status: 'active', year: 1983, type: 'BWR' },
+  { id: 'us-3mi',         name: 'Three Mile Island', country: 'USA', lat: 40.153, lng: -76.725, capGW: 0.8, status: 'paused', year: 1974, type: 'PWR',
+    note: 'Unit 1 restart planned for ~2028 under Microsoft offtake. Unit 2 was the 1979 partial-meltdown site.' },
+  { id: 'us-salem',       name: 'Salem / Hope Creek', country: 'USA', lat: 39.463, lng: -75.535, capGW: 3.6, status: 'active', year: 1977, type: 'PWR/BWR' },
+  { id: 'us-beavervalley', name: 'Beaver Valley', country: 'USA', lat: 40.622, lng: -80.434, capGW: 1.9, status: 'active', year: 1976, type: 'PWR' },
+  { id: 'us-davisbesse', name: 'Davis-Besse',     country: 'USA', lat: 41.597, lng: -83.087, capGW: 0.9, status: 'active', year: 1977, type: 'PWR' },
+  { id: 'us-perry',       name: 'Perry',          country: 'USA', lat: 41.801, lng: -81.143, capGW: 1.3, status: 'active', year: 1986, type: 'BWR' },
+  { id: 'us-dccook',      name: 'D.C. Cook',      country: 'USA', lat: 41.975, lng: -86.566, capGW: 2.2, status: 'active', year: 1975, type: 'PWR' },
+  { id: 'us-palisades',   name: 'Palisades',      country: 'USA', lat: 42.323, lng: -86.314, capGW: 0.8, status: 'paused', year: 1971, type: 'PWR',
+    note: 'Holtec is pursuing a restart — first US reactor revival ever attempted.' },
+  { id: 'us-pointbeach',  name: 'Point Beach',    country: 'USA', lat: 44.281, lng: -87.536, capGW: 1.0, status: 'active', year: 1970, type: 'PWR' },
+  { id: 'us-prairieisland', name: 'Prairie Island', country: 'USA', lat: 44.622, lng: -92.633, capGW: 1.1, status: 'active', year: 1973, type: 'PWR' },
+  { id: 'us-monticello',  name: 'Monticello',     country: 'USA', lat: 45.333, lng: -93.847, capGW: 0.7, status: 'active', year: 1971, type: 'BWR' },
+  { id: 'us-cooper',      name: 'Cooper',         country: 'USA', lat: 40.361, lng: -95.638, capGW: 0.8, status: 'active', year: 1974, type: 'BWR' },
+  { id: 'us-wolfcreek',   name: 'Wolf Creek',     country: 'USA', lat: 38.236, lng: -95.689, capGW: 1.2, status: 'active', year: 1985, type: 'PWR' },
+  { id: 'us-callaway',    name: 'Callaway',       country: 'USA', lat: 38.762, lng: -91.781, capGW: 1.2, status: 'active', year: 1984, type: 'PWR' },
+  { id: 'us-anuke',       name: 'Arkansas Nuclear One', country: 'USA', lat: 35.310, lng: -93.232, capGW: 1.8, status: 'active', year: 1974, type: 'PWR' },
+  { id: 'us-riverbend',   name: 'River Bend',     country: 'USA', lat: 30.756, lng: -91.330, capGW: 1.0, status: 'active', year: 1986, type: 'BWR' },
+  { id: 'us-waterford',   name: 'Waterford 3',    country: 'USA', lat: 29.995, lng: -90.471, capGW: 1.2, status: 'active', year: 1985, type: 'PWR' },
+  { id: 'us-grandgulf',   name: 'Grand Gulf',     country: 'USA', lat: 32.008, lng: -91.048, capGW: 1.4, status: 'active', year: 1985, type: 'BWR' },
+  { id: 'us-comanchepk',  name: 'Comanche Peak',  country: 'USA', lat: 32.300, lng: -97.785, capGW: 2.4, status: 'active', year: 1990, type: 'PWR' },
+  { id: 'us-southtexas',  name: 'South Texas Project', country: 'USA', lat: 28.795, lng: -96.048, capGW: 2.6, status: 'active', year: 1988, type: 'PWR' },
+  { id: 'us-diablocanyon', name: 'Diablo Canyon', country: 'USA', lat: 35.211, lng: -120.854, capGW: 2.3, status: 'active', year: 1985, type: 'PWR',
+    note: 'California\'s only operating reactors; granted a 20-year life extension in 2024.' },
+  { id: 'us-columbia',    name: 'Columbia',       country: 'USA', lat: 46.471, lng: -119.333, capGW: 1.2, status: 'active', year: 1984, type: 'BWR' },
+  { id: 'us-brunswick',   name: 'Brunswick',      country: 'USA', lat: 33.958, lng: -78.011, capGW: 1.9, status: 'active', year: 1975, type: 'BWR' },
+  { id: 'us-robinson',    name: 'H.B. Robinson',  country: 'USA', lat: 34.402, lng: -80.158, capGW: 0.7, status: 'active', year: 1971, type: 'PWR' },
+  { id: 'us-summer',      name: 'Summer',         country: 'USA', lat: 34.299, lng: -81.319, capGW: 1.0, status: 'active', year: 1984, type: 'PWR' },
+  { id: 'us-stlucie',     name: 'St. Lucie',      country: 'USA', lat: 27.349, lng: -80.246, capGW: 1.9, status: 'active', year: 1976, type: 'PWR' },
+  { id: 'us-turkeypoint', name: 'Turkey Point',   country: 'USA', lat: 25.435, lng: -80.331, capGW: 1.6, status: 'active', year: 1972, type: 'PWR' },
+  { id: 'us-lasalle',     name: 'LaSalle',        country: 'USA', lat: 41.243, lng: -88.671, capGW: 2.3, status: 'active', year: 1982, type: 'BWR' },
+  { id: 'us-byron',       name: 'Byron',          country: 'USA', lat: 42.075, lng: -89.279, capGW: 2.3, status: 'active', year: 1985, type: 'PWR' },
+  { id: 'us-braidwood',   name: 'Braidwood',      country: 'USA', lat: 41.244, lng: -88.207, capGW: 2.4, status: 'active', year: 1988, type: 'PWR' },
+  { id: 'us-clinton',     name: 'Clinton',        country: 'USA', lat: 40.172, lng: -88.836, capGW: 1.1, status: 'active', year: 1987, type: 'BWR' },
+  { id: 'us-quadcities',  name: 'Quad Cities',    country: 'USA', lat: 41.726, lng: -90.310, capGW: 1.9, status: 'active', year: 1972, type: 'BWR' },
+  { id: 'us-dresden',     name: 'Dresden',        country: 'USA', lat: 41.394, lng: -88.270, capGW: 1.8, status: 'active', year: 1970, type: 'BWR' },
+  { id: 'us-seabrook',    name: 'Seabrook',       country: 'USA', lat: 42.899, lng: -70.851, capGW: 1.2, status: 'active', year: 1990, type: 'PWR' },
+  { id: 'us-millstone',   name: 'Millstone',      country: 'USA', lat: 41.310, lng: -72.166, capGW: 2.0, status: 'active', year: 1971, type: 'PWR' },
+  { id: 'us-ginna',       name: 'R.E. Ginna',     country: 'USA', lat: 43.278, lng: -77.310, capGW: 0.6, status: 'active', year: 1970, type: 'PWR' },
+  { id: 'us-nineMP',      name: 'Nine Mile Point', country: 'USA', lat: 43.521, lng: -76.410, capGW: 1.9, status: 'active', year: 1969, type: 'BWR' },
+  { id: 'us-fitzpatrick', name: 'FitzPatrick',    country: 'USA', lat: 43.519, lng: -76.398, capGW: 0.8, status: 'active', year: 1975, type: 'BWR' },
+
+  /* =================== FRANCE =================== */
+  { id: 'fr-tricastin',   name: 'Tricastin',      country: 'France', lat: 44.330, lng:  4.732, capGW: 3.7, status: 'active', year: 1980, type: 'PWR' },
+  { id: 'fr-bugey',       name: 'Bugey',          country: 'France', lat: 45.799, lng:  5.270, capGW: 3.6, status: 'active', year: 1972, type: 'PWR' },
+  { id: 'fr-cruas',       name: 'Cruas',          country: 'France', lat: 44.633, lng:  4.756, capGW: 3.6, status: 'active', year: 1983, type: 'PWR' },
+  { id: 'fr-blayais',     name: 'Blayais',        country: 'France', lat: 45.256, lng: -0.692, capGW: 3.6, status: 'active', year: 1981, type: 'PWR' },
+  { id: 'fr-chinon',      name: 'Chinon',         country: 'France', lat: 47.231, lng:  0.171, capGW: 3.6, status: 'active', year: 1982, type: 'PWR' },
+  { id: 'fr-dampierre',   name: 'Dampierre',      country: 'France', lat: 47.733, lng:  2.516, capGW: 3.6, status: 'active', year: 1980, type: 'PWR' },
+  { id: 'fr-nogent',      name: 'Nogent',         country: 'France', lat: 48.515, lng:  3.518, capGW: 2.6, status: 'active', year: 1987, type: 'PWR' },
+  { id: 'fr-paluel',      name: 'Paluel',         country: 'France', lat: 49.858, lng:  0.633, capGW: 5.3, status: 'active', year: 1984, type: 'PWR' },
+  { id: 'fr-penly',       name: 'Penly',          country: 'France', lat: 49.976, lng:  1.212, capGW: 2.6, status: 'active', year: 1990, type: 'PWR' },
+  { id: 'fr-chooz',       name: 'Chooz',          country: 'France', lat: 50.090, lng:  4.789, capGW: 3.0, status: 'active', year: 1996, type: 'PWR' },
+  { id: 'fr-flamanville', name: 'Flamanville',    country: 'France', lat: 49.536, lng: -1.881, capGW: 4.2, status: 'active', year: 1985, type: 'PWR/EPR',
+    note: 'Flamanville-3 EPR finally synced to grid in Sep 2024 after 17 years of construction.' },
+  { id: 'fr-stalban',     name: 'Saint-Alban',    country: 'France', lat: 45.404, lng:  4.755, capGW: 2.7, status: 'active', year: 1985, type: 'PWR' },
+  { id: 'fr-stlaurent',   name: 'Saint-Laurent',  country: 'France', lat: 47.720, lng:  1.578, capGW: 1.8, status: 'active', year: 1981, type: 'PWR' },
+  { id: 'fr-belleville',  name: 'Belleville',     country: 'France', lat: 47.510, lng:  2.875, capGW: 2.6, status: 'active', year: 1988, type: 'PWR' },
+  { id: 'fr-fessenheim',  name: 'Fessenheim',     country: 'France', lat: 47.903, lng:  7.563, capGW: 0,   status: 'ghost',  year: 2020,
+    note: 'France\'s oldest reactor pair, shut down 2020 by political decision.' },
+  { id: 'fr-golfech',     name: 'Golfech',        country: 'France', lat: 44.107, lng:  0.844, capGW: 2.6, status: 'active', year: 1990, type: 'PWR' },
+
+  /* =================== CHINA =================== */
+  { id: 'cn-lingao',      name: 'Ling Ao',        country: 'China', lat: 22.604, lng: 114.587, capGW: 4.0, status: 'active', year: 2002, type: 'PWR' },
+  { id: 'cn-hongyanhe',   name: 'Hongyanhe',      country: 'China', lat: 39.793, lng: 121.475, capGW: 7.1, status: 'active', year: 2013, type: 'CPR-1000' },
+  { id: 'cn-ningde',      name: 'Ningde',         country: 'China', lat: 26.812, lng: 119.999, capGW: 4.1, status: 'active', year: 2013, type: 'CPR-1000' },
+  { id: 'cn-yangjiang',   name: 'Yangjiang',      country: 'China', lat: 21.713, lng: 112.270, capGW: 6.1, status: 'active', year: 2014, type: 'CPR-1000' },
+  { id: 'cn-sanmen',      name: 'Sanmen',         country: 'China', lat: 29.165, lng: 121.624, capGW: 2.5, status: 'active', year: 2018, type: 'AP1000' },
+  { id: 'cn-changjiang',  name: 'Changjiang',     country: 'China', lat: 19.451, lng: 108.953, capGW: 1.3, status: 'active', year: 2015, type: 'CNP-650' },
+  { id: 'cn-fangchenggang', name: 'Fangchenggang', country: 'China', lat: 21.572, lng: 108.484, capGW: 4.7, status: 'active', year: 2015, type: 'CPR-1000/Hualong' },
+  { id: 'cn-qinshan',     name: 'Qinshan',        country: 'China', lat: 30.435, lng: 120.957, capGW: 6.5, status: 'active', year: 1991, type: 'PWR/PHWR',
+    note: 'China\'s oldest nuclear site; mix of CNP-300, CANDU, and Hualong One reactors.' },
+  { id: 'cn-taishan',     name: 'Taishan',        country: 'China', lat: 21.937, lng: 112.985, capGW: 3.4, status: 'active', year: 2018, type: 'EPR',
+    note: 'World\'s first operating EPR units.' },
+  { id: 'cn-shijiazhuang', name: 'Hai Yang II', country: 'China', lat: 36.71, lng: 121.16, capGW: 1.2, status: 'active', year: 2024, type: 'CAP-1000' },
+
+  /* =================== JAPAN =================== */
+  { id: 'jp-sendai',      name: 'Sendai',         country: 'Japan', lat: 31.834, lng: 130.193, capGW: 1.8, status: 'active', year: 1984, type: 'PWR' },
+  { id: 'jp-takahama',    name: 'Takahama',       country: 'Japan', lat: 35.522, lng: 135.501, capGW: 3.3, status: 'active', year: 1974, type: 'PWR' },
+  { id: 'jp-ohi',         name: 'Ōi',             country: 'Japan', lat: 35.541, lng: 135.652, capGW: 2.4, status: 'active', year: 1979, type: 'PWR' },
+  { id: 'jp-mihama',      name: 'Mihama',         country: 'Japan', lat: 35.706, lng: 135.965, capGW: 0.8, status: 'active', year: 1976, type: 'PWR' },
+  { id: 'jp-hamaoka',     name: 'Hamaoka',        country: 'Japan', lat: 34.622, lng: 138.143, capGW: 3.5, status: 'paused', year: 1976, type: 'BWR',
+    note: 'Idle since 2011; sits over the Tokai earthquake fault line.' },
+  { id: 'jp-tokai2',      name: 'Tokai 2',        country: 'Japan', lat: 36.467, lng: 140.610, capGW: 1.1, status: 'paused', year: 1978, type: 'BWR' },
+  { id: 'jp-onagawa',     name: 'Onagawa',        country: 'Japan', lat: 38.401, lng: 141.499, capGW: 0.8, status: 'active', year: 1984, type: 'BWR',
+    note: 'Closest plant to the 2011 Tōhoku earthquake epicenter — survived intact. Unit 2 restarted 2024.' },
+  { id: 'jp-ikata',       name: 'Ikata',          country: 'Japan', lat: 33.491, lng: 132.310, capGW: 0.9, status: 'active', year: 1977, type: 'PWR' },
+  { id: 'jp-shimane',     name: 'Shimane',        country: 'Japan', lat: 35.538, lng: 132.999, capGW: 0.8, status: 'paused', year: 1974, type: 'BWR' },
+  { id: 'jp-shika',       name: 'Shika',          country: 'Japan', lat: 37.061, lng: 136.726, capGW: 1.9, status: 'paused', year: 1993, type: 'BWR' },
+  { id: 'jp-tomari',      name: 'Tomari',         country: 'Japan', lat: 43.039, lng: 140.512, capGW: 2.1, status: 'paused', year: 1989, type: 'PWR' },
+  { id: 'jp-tsuruga',     name: 'Tsuruga',        country: 'Japan', lat: 35.756, lng: 136.085, capGW: 1.2, status: 'paused', year: 1970, type: 'PWR' },
+  { id: 'jp-higashidori', name: 'Higashidōri',    country: 'Japan', lat: 41.187, lng: 141.396, capGW: 1.1, status: 'paused', year: 2005, type: 'BWR' },
+
+  /* =================== RUSSIA =================== */
+  { id: 'ru-novovoronezh', name: 'Novovoronezh',  country: 'Russia', lat: 51.275, lng: 39.211, capGW: 2.6, status: 'active', year: 1964, type: 'VVER',
+    note: 'Russia\'s first commercial PWR-line plant. Hosts the lead VVER-1200 unit.' },
+  { id: 'ru-smolensk',    name: 'Smolensk',       country: 'Russia', lat: 54.166, lng: 33.232, capGW: 3.0, status: 'active', year: 1982, type: 'RBMK' },
+  { id: 'ru-kursk',       name: 'Kursk',          country: 'Russia', lat: 51.674, lng: 35.605, capGW: 3.0, status: 'active', year: 1976, type: 'RBMK/VVER' },
+  { id: 'ru-balakovo',    name: 'Balakovo',       country: 'Russia', lat: 52.082, lng: 47.948, capGW: 4.0, status: 'active', year: 1985, type: 'VVER' },
+  { id: 'ru-rostov',      name: 'Rostov',         country: 'Russia', lat: 47.598, lng: 42.371, capGW: 4.0, status: 'active', year: 2001, type: 'VVER' },
+  { id: 'ru-bilibino',    name: 'Bilibino',       country: 'Russia', lat: 68.054, lng: 166.529, capGW: 0.1, status: 'paused', year: 1974, type: 'EGP-6',
+    note: 'Tiny Arctic plant being replaced by the floating Akademik Lomonosov.' },
+  { id: 'ru-kola',        name: 'Kola',           country: 'Russia', lat: 67.467, lng: 32.471, capGW: 1.6, status: 'active', year: 1973, type: 'VVER' },
+  { id: 'ru-floating',    name: 'Akademik Lomonosov', country: 'Russia', lat: 69.7, lng: 170.305, capGW: 0.07, status: 'active', year: 2020, type: 'KLT-40S',
+    note: 'World\'s only operating floating nuclear power plant. Moored at Pevek, Chukotka.' },
+
+  /* =================== S. KOREA =================== */
+  { id: 'kr-hanbit',      name: 'Hanbit',         country: 'S. Korea', lat: 35.412, lng: 126.421, capGW: 5.9, status: 'active', year: 1986, type: 'OPR-1000' },
+  { id: 'kr-wolsong',     name: 'Wolsong',        country: 'S. Korea', lat: 35.711, lng: 129.473, capGW: 3.1, status: 'active', year: 1983, type: 'PHWR/OPR-1000' },
+  { id: 'kr-shinkori',    name: 'Shin-Kori',      country: 'S. Korea', lat: 35.321, lng: 129.293, capGW: 5.6, status: 'active', year: 2011, type: 'APR-1400' },
+  { id: 'kr-saeul',       name: 'Saeul',          country: 'S. Korea', lat: 35.32,  lng: 129.30,  capGW: 2.8, status: 'active', year: 2016, type: 'APR-1400' },
+
+  /* =================== INDIA =================== */
+  { id: 'in-kakrapar',    name: 'Kakrapar',       country: 'India', lat: 21.245, lng:  73.350, capGW: 1.4, status: 'active', year: 1993, type: 'PHWR' },
+  { id: 'in-rajasthan',   name: 'Rajasthan (Rawatbhata)', country: 'India', lat: 24.864, lng: 75.582, capGW: 1.2, status: 'active', year: 1973, type: 'PHWR' },
+  { id: 'in-kaiga',       name: 'Kaiga',          country: 'India', lat: 14.857, lng:  74.443, capGW: 0.9, status: 'active', year: 2000, type: 'PHWR' },
+  { id: 'in-narora',      name: 'Narora',         country: 'India', lat: 28.156, lng:  78.404, capGW: 0.4, status: 'active', year: 1991, type: 'PHWR' },
+  { id: 'in-madras',      name: 'Madras (Kalpakkam)', country: 'India', lat: 12.558, lng: 80.175, capGW: 0.4, status: 'active', year: 1984, type: 'PHWR',
+    note: 'Hosts the PFBR fast breeder — India\'s long-running three-stage program.' },
+
+  /* =================== CANADA =================== */
+  { id: 'ca-pickering',   name: 'Pickering',      country: 'Canada', lat: 43.811, lng: -79.066, capGW: 3.1, status: 'active', year: 1971, type: 'CANDU',
+    note: 'Refurbishment plan extends operation into the 2050s.' },
+  { id: 'ca-darlington',  name: 'Darlington',     country: 'Canada', lat: 43.872, lng: -78.720, capGW: 3.5, status: 'active', year: 1990, type: 'CANDU',
+    note: 'Site for the BWRX-300 SMR — Ontario broke ground in 2024.' },
+  { id: 'ca-pointlepreau', name: 'Point Lepreau', country: 'Canada', lat: 45.066, lng: -66.456, capGW: 0.7, status: 'active', year: 1983, type: 'CANDU' },
+  { id: 'ca-gentilly',    name: 'Gentilly',       country: 'Canada', lat: 46.397, lng: -72.359, capGW: 0,   status: 'ghost',  year: 2012,
+    note: 'Quebec\'s only commercial reactor, closed 2012 by provincial decision.' },
+
+  /* =================== UKRAINE =================== */
+  { id: 'ua-rivne',       name: 'Rivne',          country: 'Ukraine', lat: 51.323, lng:  25.892, capGW: 2.8, status: 'active', year: 1980, type: 'VVER' },
+  { id: 'ua-southuk',     name: 'South Ukraine',  country: 'Ukraine', lat: 47.815, lng:  31.220, capGW: 3.0, status: 'active', year: 1982, type: 'VVER' },
+  { id: 'ua-khmelnitsky', name: 'Khmelnytskyi',   country: 'Ukraine', lat: 50.302, lng:  26.638, capGW: 2.0, status: 'active', year: 1987, type: 'VVER' },
+
+  /* =================== UK =================== */
+  { id: 'uk-heysham',     name: 'Heysham',        country: 'UK', lat: 54.029, lng: -2.916, capGW: 2.4, status: 'active', year: 1983, type: 'AGR' },
+  { id: 'uk-hartlepool',  name: 'Hartlepool',     country: 'UK', lat: 54.635, lng: -1.181, capGW: 1.2, status: 'active', year: 1983, type: 'AGR' },
+  { id: 'uk-torness',     name: 'Torness',        country: 'UK', lat: 55.964, lng: -2.408, capGW: 1.2, status: 'active', year: 1988, type: 'AGR' },
+  { id: 'uk-sizewell',    name: 'Sizewell B',     country: 'UK', lat: 52.213, lng:  1.620, capGW: 1.2, status: 'active', year: 1995, type: 'PWR',
+    note: 'UK\'s only PWR. Sizewell C (EPR) is under planning.' },
+  { id: 'uk-dungeness',   name: 'Dungeness',      country: 'UK', lat: 50.913, lng:  0.964, capGW: 0,   status: 'ghost',  year: 2021,
+    note: 'Closed 2021 after 38 years of operation.' },
+
+  /* =================== SPAIN =================== */
+  { id: 'es-asco',        name: 'Ascó',           country: 'Spain', lat: 41.200, lng:  0.572, capGW: 2.0, status: 'active', year: 1983, type: 'PWR' },
+  { id: 'es-vandellos',   name: 'Vandellós',      country: 'Spain', lat: 41.039, lng:  0.871, capGW: 1.1, status: 'active', year: 1988, type: 'PWR' },
+  { id: 'es-cofrentes',   name: 'Cofrentes',      country: 'Spain', lat: 39.215, lng: -1.046, capGW: 1.1, status: 'active', year: 1985, type: 'BWR' },
+  { id: 'es-trillo',      name: 'Trillo',         country: 'Spain', lat: 40.701, lng: -2.621, capGW: 1.0, status: 'active', year: 1988, type: 'PWR' },
+
+  /* =================== OTHER (top builders + notables) =================== */
+  { id: 'se-ringhals',    name: 'Ringhals',       country: 'Sweden',   lat: 57.260, lng:  12.111, capGW: 2.2, status: 'active', year: 1976, type: 'PWR/BWR' },
+  { id: 'se-oskarshamn',  name: 'Oskarshamn',     country: 'Sweden',   lat: 57.415, lng:  16.667, capGW: 1.4, status: 'active', year: 1972, type: 'BWR' },
+  { id: 'be-tihange',     name: 'Tihange',        country: 'Belgium',  lat: 50.534, lng:   5.273, capGW: 2.0, status: 'active', year: 1975, type: 'PWR' },
+  { id: 'ch-goesgen',     name: 'Gösgen',         country: 'Switzerland', lat: 47.367, lng: 7.967, capGW: 1.0, status: 'active', year: 1979, type: 'PWR' },
+  { id: 'ch-beznau',      name: 'Beznau',         country: 'Switzerland', lat: 47.553, lng: 8.227, capGW: 0.7, status: 'active', year: 1969, type: 'PWR',
+    note: 'World\'s oldest still-running commercial reactor.' },
+  { id: 'cz-dukovany',    name: 'Dukovany',       country: 'Czechia',  lat: 49.085, lng:  16.135, capGW: 2.0, status: 'active', year: 1985, type: 'VVER' },
+  { id: 'pk-chashma',     name: 'Chashma',        country: 'Pakistan', lat: 32.392, lng:  71.464, capGW: 1.3, status: 'active', year: 2000, type: 'PWR' },
+  { id: 'pk-karachi',     name: 'Karachi',        country: 'Pakistan', lat: 24.847, lng:  66.789, capGW: 2.2, status: 'active', year: 2021, type: 'Hualong One' },
+  { id: 'sk-mochovce',    name: 'Mochovce',       country: 'Slovakia', lat: 48.265, lng:  18.460, capGW: 1.7, status: 'active', year: 1998, type: 'VVER' },
+  { id: 'sk-bohunice',    name: 'Bohunice',       country: 'Slovakia', lat: 48.493, lng:  17.685, capGW: 0.9, status: 'active', year: 1984, type: 'VVER' },
+  { id: 'hu-paks',        name: 'Paks',           country: 'Hungary',  lat: 46.572, lng:  18.853, capGW: 2.0, status: 'active', year: 1982, type: 'VVER',
+    note: 'Paks II expansion (Russian VVER-1200) underway despite sanctions.' },
+  { id: 'ro-cernavoda',   name: 'Cernavodă',      country: 'Romania',  lat: 44.323, lng:  28.058, capGW: 1.4, status: 'active', year: 1996, type: 'CANDU' },
+  { id: 'bg-kozloduy',    name: 'Kozloduy',       country: 'Bulgaria', lat: 43.747, lng:  23.768, capGW: 2.0, status: 'active', year: 1974, type: 'VVER' },
+  { id: 'ir-bushehr',     name: 'Bushehr',        country: 'Iran',     lat: 28.829, lng:  50.886, capGW: 1.0, status: 'active', year: 2011, type: 'VVER' },
+  { id: 'by-belarusian',  name: 'Belarusian',     country: 'Belarus',  lat: 54.770, lng:  26.085, capGW: 2.4, status: 'active', year: 2021, type: 'VVER' },
+  { id: 'am-metsamor',    name: 'Metsamor',       country: 'Armenia',  lat: 40.180, lng:  44.146, capGW: 0.4, status: 'active', year: 1980, type: 'VVER' },
+]

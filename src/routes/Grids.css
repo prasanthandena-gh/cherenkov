@@ -1,0 +1,86 @@
+/* Grids route — chassis owns header/panel/chip/range.
+   Route-specific: per-source row layout, chart sizing, brownout banner. */
+
+.gri-body {
+  padding: 14px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.gri-grid {
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: 12px;
+}
+@media (max-width: 1100px) {
+  .gri-grid { grid-template-columns: 1fr; }
+}
+
+.gri-row { display: flex; flex-direction: column; gap: 4px; padding: 4px 0; }
+.gri-row.is-tripped {
+  background: rgba(255, 51, 51, 0.10);
+  border-left: 2px solid var(--crit);
+  padding-left: 8px;
+  animation: gri-tripped-flash 1.2s infinite;
+}
+@keyframes gri-tripped-flash {
+  50% { background: rgba(255, 51, 51, 0.20); }
+}
+.gri-row.is-tripped .gri-row-label { color: var(--crit); text-shadow: 0 0 6px var(--crit); }
+.gri-row-head {
+  display: grid;
+  grid-template-columns: 10px 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+.gri-row-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 4px currentColor;
+}
+.gri-row-label { font-size: 10px; letter-spacing: 0.22em; color: var(--ink); }
+.gri-row-out   { font-size: 9px;  letter-spacing: 0.1em; min-width: 56px; text-align: right; }
+
+/* Sim column */
+.gri-sim {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+.gri-gauge-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.gri-chart-svg {
+  width: 100%;
+  height: 140px;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+}
+.gri-chart-empty {
+  height: 140px;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--ink-dim);
+}
+
+.gri-brownout {
+  width: 100%;
+  text-align: center;
+  padding: 6px 10px;
+  background: rgba(255, 51, 51, 0.12);
+  border: 1px solid var(--crit);
+  color: var(--crit);
+  font-size: 10px; letter-spacing: 0.22em;
+  animation: gri-brownout-blink 1s infinite;
+}
+@keyframes gri-brownout-blink { 50% { background: rgba(255, 51, 51, 0.25); } }

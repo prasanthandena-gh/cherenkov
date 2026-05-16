@@ -1,0 +1,117 @@
+/* ReactorModel route — chassis owns layout, header.
+   Route-specific: 3D stage, parts list, back-link. */
+
+.rmodel-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+.rmodel-back {
+  position: absolute;
+  top: 50px;
+  right: 24px;
+  color: var(--ink-dim);
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  padding: 6px 10px;
+  border: 1px solid var(--rule);
+  background: rgba(10, 10, 10, 0.6);
+  transition: all var(--t-fast) var(--easing);
+}
+.rmodel-back:hover { color: var(--signal); border-color: var(--signal); box-shadow: 0 0 10px var(--signal-glow); }
+
+.rmodel-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 14px;
+  padding: 14px 20px 20px;
+  min-height: 0;
+}
+@media (max-width: 1100px) {
+  .rmodel-body { grid-template-columns: 1fr; grid-template-rows: 1fr auto; }
+}
+
+.rmodel-3d {
+  position: relative;
+  background: radial-gradient(ellipse at center, #161616 0%, #0a0a0a 100%);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.dissect-mount {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.rmodel-hover {
+  position: absolute;
+  bottom: 12px; left: 12px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--signal);
+  padding: 4px 10px;
+  background: rgba(10,10,10,0.7);
+  border: 1px solid var(--rule-signal);
+  pointer-events: none;
+}
+
+.rmodel-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.rmodel-control-row {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.rmodel-control-row > * { flex: 1; min-width: 0; }
+
+.rmodel-parts-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rmodel-part-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--ink-soft);
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed var(--rule);
+  cursor: pointer;
+  transition: all var(--t-fast) var(--easing);
+}
+.rmodel-part-btn:hover { color: var(--ink); background: var(--bg-elev-2); }
+.rmodel-part-btn.on {
+  color: var(--bg);
+  background: var(--signal);
+}
+.rmodel-part-btn.on .rmodel-part-arrow { color: var(--bg); }
+.rmodel-part-arrow { color: var(--ink-faint); font-size: 10px; }
+
+.rmodel-detail-kb {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  padding: 5px 10px;
+  border: 1px solid var(--signal);
+  color: var(--signal);
+  background: transparent;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.rmodel-detail-kb:hover { background: var(--signal-soft); box-shadow: 0 0 10px var(--signal-glow); }

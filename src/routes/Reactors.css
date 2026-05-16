@@ -1,0 +1,107 @@
+/* Reactors gallery — chassis owns header; deliberate yellow card treatment
+   per DESIGN.md exception. */
+
+.reactors-body {
+  padding: 14px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.reactors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  padding-bottom: 14px;
+}
+
+.reactors-empty {
+  grid-column: 1 / -1;
+  padding: 40px 20px;
+  text-align: center;
+  font-style: italic;
+  color: var(--ink-dim);
+  font-size: 13px;
+}
+
+.rcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 16px 14px;
+  background: var(--signal);
+  color: var(--bg);
+  border: 1px solid var(--signal);
+  text-decoration: none;
+  aspect-ratio: 3 / 4;
+  transition: all var(--t-fast) var(--easing);
+  overflow: hidden;
+}
+.rcard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(250, 204, 21, 0.20), 0 0 26px var(--signal-glow);
+  outline: 2px solid var(--signal-bright);
+  outline-offset: -2px;
+}
+.rcard-vendor {
+  align-self: flex-start;
+  background: var(--bg);
+  color: var(--signal);
+  padding: 2px 8px;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+}
+.rcard-gen {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: var(--bg);
+  color: var(--signal);
+  padding: 2px 6px;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  font-family: var(--font-mono);
+}
+.rcard-glyph {
+  flex: 1;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 8px 0 0;
+}
+.rcard-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--bg);
+  margin-top: 6px;
+}
+.rcard-meta {
+  display: flex;
+  gap: 6px;
+  font-size: 9px;
+  color: rgba(0,0,0,0.7);
+  letter-spacing: 0.14em;
+}
+.rcard-fun {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.62);
+  line-height: 1.4;
+  margin-top: 4px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.rcard-cta {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  color: rgba(0,0,0,0.55);
+  margin-top: 4px;
+  align-self: flex-start;
+}
+.rcard:hover .rcard-cta { color: var(--bg); }

@@ -1,0 +1,208 @@
+/* Fusion route — chassis owns header, panel, chips, slider.
+   Route-specific: tokamak/NIF stages, D-T strip, project cards. */
+
+.fus-body {
+  padding: 14px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fus-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+}
+@media (max-width: 1100px) { .fus-grid { grid-template-columns: 1fr; } }
+
+/* Tokamak */
+.fus-tok-frame {
+  position: relative;
+  height: 320px;
+  max-height: 40vh;
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.fus-tok-frame .tokamak-mount { position: absolute; inset: 0; width: 100%; height: 100%; }
+.fus-readout {
+  position: absolute;
+  bottom: 10px; left: 12px; right: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: #ff4081;
+  pointer-events: none;
+}
+.fus-q {
+  padding: 2px 8px;
+  border: 1px solid currentColor;
+  color: var(--ink-dim);
+}
+.fus-q-burning { color: var(--signal); border-color: var(--signal); box-shadow: 0 0 6px var(--signal-glow); }
+.fus-q-ignited { color: var(--ok); border-color: var(--ok); box-shadow: 0 0 10px var(--ok); }
+.r-hot { color: var(--ok); animation: r-hot 1.2s infinite; }
+@keyframes r-hot { 50% { color: #fff; text-shadow: 0 0 6px var(--ok); } }
+
+/* NIF */
+.fus-nif-stage {
+  position: relative;
+  height: 320px;
+  max-height: 40vh;
+  border: 1px solid var(--rule);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.fus-nif-stage.ignited {
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.18), transparent 70%);
+}
+.fus-nif-svg { width: 100%; height: 100%; }
+.fus-nif-pellet {
+  fill: #facc15;
+  filter: drop-shadow(0 0 8px var(--signal-glow));
+}
+.fus-nif-stage.ignited .fus-nif-pellet {
+  fill: #fff; filter: drop-shadow(0 0 30px #fff);
+  animation: nif-flash 700ms ease-out;
+}
+@keyframes nif-flash { 40% { r: 30; } }
+.fus-nif-laser { stroke: var(--info); stroke-width: 1.5; }
+.fus-nif-stage.firing .fus-nif-laser {
+  stroke: var(--info); stroke-width: 2.4;
+  filter: drop-shadow(0 0 6px var(--info));
+  animation: nif-laser 900ms ease-out;
+}
+@keyframes nif-laser {
+  0%   { stroke: rgba(76,200,255,0); stroke-width: 1.5; }
+  30%  { stroke: rgba(76,200,255,1); stroke-width: 4; }
+  100% { stroke: rgba(76,200,255,0); stroke-width: 1.5; }
+}
+.fus-nif-shock {
+  fill: none; stroke: var(--signal);
+  stroke-width: 2; opacity: 0;
+  transform-origin: center; transform-box: fill-box;
+  animation: nif-shock 1.6s ease-out;
+}
+.fus-nif-shock-2 { animation-delay: 100ms; stroke: #ff4081; }
+@keyframes nif-shock {
+  0%   { opacity: 1; transform: scale(0.2); }
+  100% { opacity: 0; transform: scale(2); }
+}
+.fus-nif-fire {
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 0.22em;
+  padding: 10px 22px;
+  border: 1px solid var(--signal);
+  background: var(--signal);
+  color: var(--bg);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 16px var(--signal-glow);
+  transition: all var(--t-fast) var(--easing);
+  text-transform: uppercase;
+}
+.fus-nif-fire:hover:not(:disabled) {
+  background: var(--signal-bright);
+  box-shadow: 0 0 24px var(--signal-glow);
+}
+.fus-nif-fire:disabled { cursor: wait; opacity: 0.7; }
+
+/* D-T strip */
+.fus-dt {
+  background: var(--bg-elev-1);
+  border: 1px solid var(--rule);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.fus-dt-tag { color: var(--signal); font-size: 10px; letter-spacing: 0.22em; flex-shrink: 0; }
+.fus-dt-svg { flex: 1; height: 50px; }
+.fus-dt-ignited .fus-dt-tag { color: var(--ok); animation: dt-glow 1.2s infinite; }
+.fus-dt-burning .fus-dt-tag { color: var(--signal); }
+@keyframes dt-glow { 50% { text-shadow: 0 0 10px var(--ok); } }
+.fus-dt-products { opacity: 0.65; transition: opacity 300ms var(--easing); }
+.fus-dt-ignited .fus-dt-products { opacity: 1; filter: drop-shadow(0 0 4px var(--signal-glow)); }
+
+/* Projects grid */
+.fus-projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+}
+.fus-projects-empty {
+  grid-column: 1 / -1;
+  padding: 40px 20px;
+  text-align: center;
+  font-style: italic;
+  color: var(--ink-dim);
+  font-size: 13px;
+}
+.fus-pcard {
+  display: block;
+  text-align: left;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--rule);
+  border-left: 3px solid #ff4081;
+  padding: 14px;
+  cursor: pointer;
+  transition: all var(--t-fast) var(--easing);
+}
+.fus-pcard:hover {
+  border-color: var(--signal);
+  border-left-color: var(--signal);
+  box-shadow: 0 0 14px var(--signal-glow);
+}
+.fus-pcard-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+.fus-pcard-tag {
+  font-size: 9px; letter-spacing: 0.18em;
+  color: #ff4081;
+}
+.fus-pcard-org { font-size: 9px; color: var(--ink-dim); letter-spacing: 0.12em; }
+.fus-pcard-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.fus-pcard-country {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--ink-dim);
+  margin-bottom: 6px;
+}
+.fus-pcard-milestone {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--signal);
+  border: 1px solid var(--rule-signal);
+  padding: 3px 8px;
+  margin-bottom: 8px;
+}
+.fus-pcard-blurb {
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+.fus-pcard-fun {
+  display: block;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--ink-dim);
+  line-height: 1.45;
+}

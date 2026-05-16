@@ -1,0 +1,177 @@
+/* Roadmap route — chassis owns header, panel, chips, slider.
+   Route-specific: pannable track, mini-map, milestone markers/cards. */
+
+.rm-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 22px 20px;
+  min-height: 0;
+}
+
+.rm-ctl-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.rm-year-slider {
+  flex: 1;
+  min-width: 240px;
+}
+
+/* === Mini-map === */
+.rm-minimap {
+  position: relative;
+  height: 40px;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--rule);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.rm-minimap-line {
+  position: absolute;
+  top: 50%; left: 8px; right: 8px;
+  height: 1px;
+  background: var(--rule);
+}
+.rm-minimap-tick {
+  position: absolute;
+  bottom: 2px;
+  transform: translateX(-50%);
+  font-size: 8px;
+  color: var(--ink-faint);
+  letter-spacing: 0.12em;
+}
+.rm-minimap-dot {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px; height: 4px;
+  background: currentColor;
+  box-shadow: 0 0 4px currentColor;
+}
+.rm-minimap-window {
+  position: absolute;
+  top: 6px; bottom: 6px;
+  background: rgba(250, 204, 21, 0.08);
+  border-left: 1px solid var(--signal);
+  border-right: 1px solid var(--signal);
+  box-shadow: 0 0 8px var(--signal-glow);
+  pointer-events: none;
+  transition: left 220ms var(--easing), width 220ms var(--easing);
+}
+
+/* === Pannable track === */
+.rm-track-wrap {
+  flex: 1;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+  min-height: 360px;
+}
+.rm-track {
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  cursor: grab;
+}
+.rm-track.dragging { cursor: grabbing; }
+.rm-track-inner {
+  position: relative;
+  height: 100%;
+  min-height: 320px;
+}
+
+.rm-line {
+  position: absolute;
+  top: 50%; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--signal), var(--crit));
+  box-shadow: 0 0 10px var(--signal-glow);
+  pointer-events: none;
+}
+.rm-now {
+  position: absolute;
+  top: 40px; bottom: 40px;
+  width: 2px;
+  background: var(--ok);
+  box-shadow: 0 0 12px var(--ok);
+  transform: translateX(-1px);
+  pointer-events: none;
+}
+.rm-now-tag {
+  position: absolute;
+  top: -22px; left: -22px;
+  font-size: 10px; letter-spacing: 0.2em;
+  color: var(--ok);
+  background: rgba(10,10,10,0.85);
+  padding: 2px 6px;
+  border: 1px solid var(--ok);
+}
+
+.rm-tick {
+  position: absolute;
+  top: calc(50% + 18px);
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 9px; color: var(--ink-faint); letter-spacing: 0.18em;
+  pointer-events: none;
+}
+
+.rm-prereq-svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.rm-slip-bar {
+  position: absolute;
+  height: 4px;
+  background: currentColor;
+  opacity: 0.4;
+  pointer-events: none;
+}
+.rm-slip-above { top: calc(50% - 10px); }
+.rm-slip-below { top: calc(50% + 6px); }
+
+/* markers */
+.rm-mark {
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%);
+}
+.rm-diamond {
+  width: 12px; height: 12px;
+  background: currentColor;
+  transform: rotate(45deg) translateY(-6px);
+  box-shadow: 0 0 10px currentColor;
+  margin: 0 auto;
+}
+.rm-mark.passed .rm-diamond { opacity: 0.4; box-shadow: none; }
+
+.rm-card {
+  position: absolute; left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  padding: 8px 10px;
+  background: rgba(10,10,10,0.95);
+  border: 1px solid currentColor;
+  font-size: 11px;
+  pointer-events: auto;
+  cursor: default;
+}
+.rm-mark-above .rm-card { bottom: 26px; }
+.rm-mark-below .rm-card { top: 26px; }
+.rm-card-year   { font-size: 9px; letter-spacing: 0.22em; color: currentColor; margin-bottom: 2px; }
+.rm-card-slip   { color: var(--warn); font-style: italic; }
+.rm-card-name {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 13px; letter-spacing: -0.01em; line-height: 1.1;
+  color: var(--ink); margin-bottom: 3px; text-transform: uppercase;
+}
+.rm-card-detail { font-size: 10px; color: var(--ink-soft); line-height: 1.4; }
